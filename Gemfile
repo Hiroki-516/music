@@ -60,3 +60,6 @@ gem 'devise'
 
 
 gem 'kaminari','~> 1.2.1'
+
+
+gem 'enum_help'
