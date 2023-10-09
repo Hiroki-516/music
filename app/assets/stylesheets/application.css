@@ -13,3 +13,113 @@
  *= require_tree .
  *= require_self
  */
+html, body {
+   margin: 0;
+   padding: 0;
+   min-height: 100vh;
+ }
+
+ header, main, footer {
+   /*font-family: "Shippori Mincho",serif;*/
+   font-family: 'Playfair Display', serif;
+ }
+
+ header, footer{
+   color: #777777;
+   background-color: #FFF6EA;
+   border-color: rgba(47, 39, 37, 0.25);
+ }
+
+ main{
+   color: white;
+   background-color: #888888;
+ }
+
+.image-container {
+  position: relative; /* 相対位置指定 */
+  text-align: center; /* テキストを中央揃え */
+}
+.main-text {
+  position: absolute; /* 絶対位置指定 */
+  top: 50%; /* 上端を中央に配置 */
+  left: 50%; /* 左端を中央に配置 */
+  transform: translate(-50%, -50%); /* 中央揃え */
+  background-color: rgba(255, 255, 255, 0.7); /* 背景色（任意） */
+  padding: 10px; /* テキスト周りの余白（任意） */
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: #333333;
+}
+.text-content {
+  text-align: center; /* テキストを中央揃え */
+}
+
+.new_items_container {
+  display: flex; /* Flexbox を使用して子要素を横に並べる */
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 20px; /* 商品間の間隔を設定 */
+}
+
+.new_item {
+  width: calc(33.33% - 20px); /* 横に並べる要素の幅を設定 */
+  padding: 10px; /* 商品の周りに余白を追加 */
+  border: 1px solid #ccc; /* 商品のボーダーを追加 */
+}
+
+.hover:hover {
+  /* ホバーエフェクトのスタイルをここに追加 */
+  background-color: lightgray; /* ホバー時の背景色を変更する例 */
+  cursor: pointer; /* マウスカーソルをポインターに変更する例 */
+  /* 他のホバーエフェクトのスタイルを追加できます */
+}
+
+footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.button-81 {
+  background-color: #fff;
+  border: 0 solid #e2e8f0;
+  border-radius: 20px;
+  box-sizing: border-box;
+  color: #0d172a;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-decoration: none #0d172a solid;
+  text-decoration-thickness: auto;
+  transition: all .1s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0px 1px 2px rgba(166, 175, 195, 0.25);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:hover {
+  background-color: #1e293b;
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .button-81 {
+    font-size: 15px;
+    padding: 18px;
+  }
+}
+
+
+  .link {
+    color: white;
+    text-decoration: none;
+  }

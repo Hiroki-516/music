@@ -21,5 +21,7 @@ class User < ApplicationRecord
          
   validates :name, presence: true
   validates :status, presence: true
+  
+  enum status: { artist: 0, listener: 1 }
 
 end

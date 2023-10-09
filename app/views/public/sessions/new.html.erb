@@ -1,26 +1,62 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <div class="col mt-5">
+      <h3 class="border-bottom"><strong>ログイン</strong></h3>
+    </div>
+  </div>
+  <div class="row ml-1">
+    <div class="col-auto">
+      <h4 class="border-bottom">会員の方はこちらからログイン</h4>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col mt-3">
+      <%= form_with model: @user, url: user_session_path do |f| %>
+      <%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+ 
+  <div class="row">
+    <h6 class="col-3 ml-3">
+      <%= f.label :name, "ニックネーム（アーティスト名）" %>
+    </h6>
+    <div class="col-5 md-1">
+      <%= f.text_field :name, autofocus: true, autocomplete: "そうさん総長（爆走像さん隊）", class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row mt-4">
+    <h5 class="col-3 ml-3">
+      <%= f.label :password, "パスワード" %>
+    </h5>
+    <div class="col-5 md-1">
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
   </div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+  <div class="row justify-content-center">
+    <h6 class="text-center">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
-    </div>
+    </h6>
+  </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="row justify-content-center">
+    <h5 class="actions mt-2 text-center">
+      <%= f.submit "ログイン",class: "button-39" %>
+    </h5>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+ <div class="row ml-1 mt-5">
+    <div class="col-auto">
+      <h4 class="border-bottom">会員登録がお済みでない方</h4>
+    </div>
+  </div>
+  <div class="row mb-4">
+    <h5 class="col mt-3 text-center">
+      <%= render "public/shared/links" %>
+    </h5>
+  </div>
+
+</div>
