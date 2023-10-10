@@ -26,11 +26,18 @@
         <%= f.label :アーティストですか？ %>
       </h5>
       <div class="col-5 mr-1">
-        <%= f.radio_button :status, "artist" %>
-        <%= f.label :status_artist, "アーティスト" %>
+        
+        <%= f.radio_button :staus, User.statuses.key(0) %>
+        <%= f.label :status_artist, User.statuses_i18n[:artist] %>
 
-        <%= f.radio_button :status, "listener" %>
-        <%= f.label :status_listener, "リスナー" %>
+        <%= f.radio_button :status, User.statuses.key(1) %>
+        <%= f.label :status_listener, User.statuses_i18n[:listener]%>
+        
+        <%#= f.radio_button :status, "artist" %>
+        <%#= f.label :status_artist, "アーティスト" %>
+
+        <%#= f.radio_button :status, "listener" %>
+        <%#= f.label :status_listener, "リスナー" %>
       </div>
     </div>
 
