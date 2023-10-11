@@ -1,5 +1,5 @@
 <div>
-  <%= image_tag @post.get_image %>
+  <%= image_tag @post.get_image(100,100) %>
   <p>曲名：<%= @post.name %></p>
   <p>説明：<%= @post.caption %></p>
   <p>投稿アーティスト画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
@@ -8,16 +8,16 @@
   <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>
   <% end %>
-   <% if @post.favorited_by?(current_user) %>
+    <% if @post.favorited_by?(current_user) %>
     <p>
       <%= link_to post_favorites_path(@post), method: :delete do %>
         ♥<%= @post.favorites.count %> いいね
-      <% end %>
+    <% end %>
     </p>
     <% else %>
     <p>
-      <%= link_to post_image_favorites_path(@post_image) do %>
-        ♡<%= @post_image.favorites.count %> いいね
+      <%= link_to post_image_favorites_path(@post) do %>
+        ♡<%= @post.favorites.count %> いいね
       <% end %>
     </p>
   <% end %>

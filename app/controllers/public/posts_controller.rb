@@ -25,9 +25,19 @@ class Public::PostsController < ApplicationController
   end
 
   
-
   def edit
+    @post = Post.find(params[:id])
   end
+  
+   def update
+    @post = Post.find(params[:id])
+    if @post.update(book_params)
+      redirect_to post_path(@post), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
+  end
+  
   
   def destroy
     post = Post.find(params[:id])

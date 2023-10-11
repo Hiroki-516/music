@@ -26,13 +26,13 @@
         <%= f.label :アーティストですか？ %>
       </h5>
       <div class="col-5 mr-1">
-        
-        <%= f.radio_button :staus, User.statuses.key(0) %>
+
+        <%= f.radio_button :status, User.statuses.key(0) %>
         <%= f.label :status_artist, User.statuses_i18n[:artist] %>
 
         <%= f.radio_button :status, User.statuses.key(1) %>
         <%= f.label :status_listener, User.statuses_i18n[:listener]%>
-        
+
         <%#= f.radio_button :status, "artist" %>
         <%#= f.label :status_artist, "アーティスト" %>
 
@@ -49,6 +49,17 @@
        <%= f.text_field :introduction, autofocus: true, autocomplete: "introduction", placeholder: "2015年からシンガーソングライターとして活動しています。よろしく！", class: "form-control"  %>
       </div>
     </div><br />
+
+     <div class="row">
+        <h5 class="col-3 ml-1 pr-1">
+        <label for="inputImage">プロフィール画像</label><br />
+        </h5>
+        <div class="col-5 md-1">
+          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+        </div>
+      </div><br />
+
+
 
       <div class="row">
         <h5 class="col-3 ml-1 pr-1">
