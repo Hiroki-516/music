@@ -1,5 +1,6 @@
 <div>
   <%= image_tag @post.get_image(100,100) %>
+  <%= audio_tag(polymorphic_path(@post.music), controls: true) %>
   <p>曲名：<%= @post.name %></p>
   <p>説明：<%= @post.caption %></p>
   <p>投稿アーティスト画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
@@ -8,38 +9,38 @@
   <% if @post.user == current_user %>
     <%= link_to "削除", post_path(@post), method: :delete %>
   <% end %>
-    <% if @post.favorited_by?(current_user) %>
+    <%# if @post.favorited_by?(current_user) %>
+    <!--<p>-->
+      <%#= link_to post_favorites_path(@post), method: :delete do %>
+        ♥<%#= @post.favorites.count %> いいね
+    <%# end %>
+    <!--</p>-->
+    <%# else %>
     <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-    <% end %>
+      <%#= link_to post_image_favorites_path(@post) do %>
+        ♡<%#= @post.favorites.count %> いいね
+      <%# end %>
     </p>
-    <% else %>
-    <p>
-      <%= link_to post_image_favorites_path(@post) do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
+  <%# end %>
 </div>
 
 
 <div>
-  <p>コメント件数：<%= @post.post_comments.count %></p>
-  <% @post.post_comments.each do |post_comment| %>
-    <p><%= image_tag post_comment.user.get_profile_image(100,100) %></p>
-    <%= post_comment.user.name %>
-    <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-    <% if post_comment.user == current_user %>
-      <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-    <% end %>
-  <% end %>
+  <p>コメント件数：<%#= @post.post_comments.count %></p>
+  <%# @post.post_comments.each do |post_comment| %>
+    <p><%#= image_tag post_comment.user.get_profile_image(100,100) %></p>
+    <%#= post_comment.user.name %>
+    <%#= post_comment.created_at.strftime('%Y/%m/%d') %><%#= post_comment.comment %>
+    <%# if post_comment.user == current_user %>
+      <%#= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
+    <%# end %>
+  <%# end %>
 
 </div>
 
 <div>
-  <%= form_with model: [@post, @post_comment] do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+  <%#= form_with model: [@post, @post_comment] do |f| %>
+    <%#= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%#= f.submit "送信する" %>
+  <%# end %>
 </div>

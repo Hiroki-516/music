@@ -11,7 +11,8 @@ class Post < ApplicationRecord
       file_path = Rails.root.join('app/assets/images/music.jpg')
       image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    image.variant(resize_to_limit: [width, height], resize: "300x250!").processed
+    #to_sは文字列とつなぐためのもので、ここでは画像のIntrinsic size最大値を決めてる
+    image.variant(resize: width.to_s + "x" + height.to_s + "!").processed
   end
   
   

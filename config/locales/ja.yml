@@ -1,6 +1,6 @@
 ja:
   enums:
-    order:
+    user:
       status:
         artist: "アーティスト"
         listener: "リスナー"
