@@ -29,9 +29,9 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
   
-   def update
+  def update
     @post = Post.find(params[:id])
-    if @post.update(book_params)
+    if @post.update(post_params)
       redirect_to post_path(@post), notice: "You have updated book successfully."
     else
       render "edit"

@@ -1,2 +1,32 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>音楽投稿編集</h2>
+    <%= form_with model:@post, local:true do |f| %>
+        <%= render "public/shared/error_messages", resource: @post %>
+      <%#= render 'shared/error_messages', obj: @user %>
+      <div class="form-group">
+        <%= f.label :曲名 %>
+        <%= f.text_field :name, class: "form-control name" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :ジャケット画像 %>
+        <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
+      </div>
+      
+       <div class="form-group">
+        <%= f.label :音楽ファイル %>
+        <%= f.file_field :music, class: "form-control-file user_image" %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :曲説明 %>
+        <%= f.text_area :caption, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

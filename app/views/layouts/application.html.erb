@@ -74,12 +74,13 @@
                   <%= User.statuses_i18n[current_user.status] %>
                   
                 <% end %>
+                <div class="col-3 text-right">
+                  <%= render "layouts/search" %>
+                </div>
               <% end %>
             </div>
 
-            <div class="col-3 text-right">
-              <%= render "layouts/search" %>
-            </div>
+           
           </div>
           <!--</div>-->
         </div>

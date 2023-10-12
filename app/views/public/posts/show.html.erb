@@ -2,13 +2,15 @@
   <%= image_tag @post.get_image(100,100) %>
   <%= audio_tag(polymorphic_path(@post.music), controls: true) %>
   <p>曲名：<%= @post.name %></p>
-  <p>説明：<%= @post.caption %></p>
+  <p>曲説明：<%= @post.caption %></p>
   <p>投稿アーティスト画像：<%= image_tag @post.user.get_profile_image(100,100) %></p>
   <p>アーティスト名：<%= @post.user.name %></p>
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
-    <%= link_to "削除", post_path(@post), method: :delete %>
-  <% end %>
+    <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
+    <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
+    <%#= link_to "削除", post_path(@post), method: :delete %>
+  <% end %><br>
     <%# if @post.favorited_by?(current_user) %>
     <!--<p>-->
       <%#= link_to post_favorites_path(@post), method: :delete do %>
