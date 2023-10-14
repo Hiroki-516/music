@@ -22,7 +22,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     patch 'users/:id/withdraw' => 'users#withdraw'
     resources :users,only: [:index, :show]
 
-    resources :genres,only: [:index, :create, :edit, :update]
+    resources :genres,only: [:index, :create, :edit, :update, :destroy]
   end
 
   scope module: :public do
@@ -34,7 +34,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     patch 'users/withdraw' => 'users#withdraw'
     resources :users,only: [:index, :show, :edit, :update]
 
-    resources :posts
+    resources :posts do
+      resources :post_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
+    end
 
   end
 

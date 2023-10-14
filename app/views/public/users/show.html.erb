@@ -11,7 +11,7 @@
   <% @posts.each do |post| %>
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to post_path(post.id) do %>
-    <!--画像の幅自体は「w-25」で決定-->
+    <!--画像の幅自体は「w-25,50,75,100」で決定-->
       <%= image_tag post.get_image(150,150), class:"card-img-top w-25"; %>
     <% end %>
     <%#= audio_tag post.music %>

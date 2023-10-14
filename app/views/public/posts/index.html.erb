@@ -3,7 +3,7 @@
   <div class="card w-50 mx-auto mt-4 shadow-lg">
     <%= link_to post_path(post.id) do %>
     <!--画像の幅自体は「w-25」で決定-->
-      <%= image_tag post.get_image(150,150), class:"card-img-top w-25"; %>
+      <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
     <% end %>
     <%#= audio_tag post.music %>
      <%= audio_tag(polymorphic_path(post.music), controls: true) %>
@@ -20,8 +20,10 @@
             <% end %>
            </p>
           <p class="card-text">曲説明：<%= post.caption %></p>
+          <%= render "public/favorites/btn", post: post %>
 
-          <span><%#= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
+
+          <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
         </div>
       </div>
     </div>

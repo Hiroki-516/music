@@ -1,4 +1,7 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
   
   def new
     @post = Post.new
@@ -8,7 +11,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      redirect_to posts_path
+      redirect_to post_path(@post), notice: "You have created book successfully."
     else
       render :new
     end
@@ -47,8 +50,15 @@ class Public::PostsController < ApplicationController
   
   
   private
-    def post_params
-      params.require(:post).permit(:name, :image, :caption, :music)
-    end
   
+  def post_params
+    params.require(:post).permit(:name, :image, :caption, :music)
+  end
+  
+  def ensure_correct_user
+    @post = Post.find(params[:id])
+    unless @post.user == current_user
+      redirect_to books_path
+    end
+  end
 end
