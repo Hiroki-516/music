@@ -9,21 +9,27 @@
         <%= f.label :曲名 %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
-      
+
+      <div class="form-group">
+        <%= f.label :ジャンル %>
+        <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_display), include_blank: "--選択して下さい--", class: "w-100" %>
+      </div>
+
       <div class="form-group">
         <%= f.label :ジャケット画像 %>
         <%= f.file_field :image, class: "form-control-file user_image", accept: 'image/*' %>
       </div>
-      
+
        <div class="form-group">
         <%= f.label :音楽ファイル %>
         <%= f.file_field :music, class: "form-control-file user_image" %>
       </div>
-      
+
       <div class="form-group">
         <%= f.label :曲説明 %>
         <%= f.text_area :caption, class: "form-control introduction" %>
       </div>
+
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
       </div>

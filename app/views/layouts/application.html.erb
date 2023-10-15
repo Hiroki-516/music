@@ -41,14 +41,14 @@
                 <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                <li class="nav-item"><%= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;
+                <!--<li class="nav-item"><%#= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;-->
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
               <% end %>
             <% elsif user_signed_in? %>
                 <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                <li class="nav-item"><%= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;
+                <li class="nav-item"><%#= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
             <% else %>
               <li class="nav-item"><%= link_to "About", homes_about_path, class: 'button-81' %></li>&nbsp;
@@ -66,7 +66,7 @@
             </div>
             <div class="col-4 ">
                  <%= link_to user_path(current_user) do %>
-                  <%= image_tag current_user.get_profile_image(100,100) %><br>
+                  <%= image_tag current_user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
                   <%= current_user.name %>
                   <!--普通のラジオボタンに対してのアーティストステータス表記方法-->
                   <%#= current_user.status %>

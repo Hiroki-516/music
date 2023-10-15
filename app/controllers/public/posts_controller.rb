@@ -19,10 +19,29 @@ class Public::PostsController < ApplicationController
   
   
   def index
-    @posts = Post.page(params[:page])
+    
+    #ジャンル一覧表示
+    @genres = Genre.all
+    #音楽投稿一覧表示
+    #クリエパラメータ(genre_id)をとりだす
+    if @genre_id = params[:genre_id]
+      #genre_idが同じものを全てとりだす
+      @post_count = Post.where(genre_id: @genre_id)
+      @posts = Post.where(genre_id: @genre_id).page(params[:page]).per(10)
+    #なければ全てとりだす
+    elsif post_name = params[:post_name]
+      @posts_count = Post.where("name LIKE ?","%"+ post_name + "%")
+      @posts = Post.where("name LIKE ?","%"+ post_name + "%").page(params[:page]).per(10)
+    else  
+      @posts_count = Post.all
+      @posts = Post.all.page(params[:page]).per(10)
+    end
   end
+  
 
   def show
+    #ジャンル一覧表示
+    @genres = Genre.all
     @post = Post.find(params[:id])
     @post_comment = PostComment.new 
   end
@@ -52,7 +71,7 @@ class Public::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:name, :image, :caption, :music)
+    params.require(:post).permit(:name, :image, :caption, :music, :genre_id)
   end
   
   def ensure_correct_user

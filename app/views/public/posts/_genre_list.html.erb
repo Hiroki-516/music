@@ -1,0 +1,25 @@
+
+<!--ジャンル検索機能-->
+<div>
+  <table class= "table table-hover">
+    <thead>
+      <tr>
+        <th>ジャンル検索</th>
+      </tr>
+    </thead>
+
+    <% genres.each do |genre| %>
+    <tbody>
+      <tr>
+        <td>
+          <!--クリエパラメータジャンルidを指定-->
+          <%= link_to posts_path(genre_id: (genre.id)), class:"link" do %>
+            <%= genre.name%>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+</div>
+<!--おしまい-->

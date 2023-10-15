@@ -13,12 +13,14 @@
             <% end %>
           </ul>
         <% end %>
-        
+
         <%= form_with model: @post do |f| %>
           <%= f.label :image, "ジャケット画像", class: "w-100" %>
           <%= f.file_field :image, accept: "image/*", class: "w-100" %>
           <%= f.label :music, "音楽ファイル", class: "w-100" %>
           <%= f.file_field :music, class: "w-100" %>
+          <%= f.label :genre_id, "音楽ジャンル", class: "w-100" %>
+          <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :genre_display), include_blank: "--選択して下さい--", class: "w-100" %>
           <div class="input-group mb-3 mt-4">
             <div class="input-group-prepend">
               <span class="input-group-text" aria-hidden="true"><i class="fa-solid fa-music"></i></span>
