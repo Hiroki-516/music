@@ -3,8 +3,11 @@
   <%= audio_tag(polymorphic_path(@post.music), controls: true) %>
   <p>曲名：<%= @post.name %></p>
   <p>曲説明：<%= @post.caption %></p>
-  <p>投稿アーティスト画像：<%= image_tag @post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
+  <%= link_to user_path(@post.user.id) do %>
+  <p><%= image_tag @post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
   <p>アーティスト名：<%= @post.user.name %></p>
+  <% end %>
+  
   <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
   <% if @post.user == current_user %>
     <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
