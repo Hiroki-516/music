@@ -21,5 +21,10 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
+  
+  
+  validates :name, presence: true
+  validates :music, presence: true
+  
 
 end

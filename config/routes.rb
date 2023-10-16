@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  
+
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
     # ユーザー用
 # URL /users/sign_in ...
 devise_for :users, skip: [:passwords], controllers: {
@@ -32,7 +36,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     get 'users/confirm_withdraw' => 'users#confirm_withdraw'
     patch 'users/withdraw' => 'users#withdraw'
-    resources :users,only: [:index, :show, :edit, :update]
+
+
+    resources :users,only: [:index, :show, :edit, :update] do
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+      resource :relationships, only: [:create, :destroy]
+    end
+
 
     resources :posts do
       resources :post_comments, only: [:create, :destroy]
