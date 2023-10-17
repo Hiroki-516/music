@@ -16,6 +16,7 @@
           <th>音楽ジャケット画像</th>
           <th>曲名</th>
           <td>曲説明</td>
+          <th></th>
         </tr>
        </thead>
        <tbody>
@@ -28,6 +29,7 @@
             <td><%= image_tag post.get_image(100,100), class:"card-img-top w-50"; %></td>
             <td><%= post.name %></td>
             <td><%= post.caption %></td>
+            <th><%#= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{post.id}"%></th>
           </tr>
          <% end %>
        </tbody>

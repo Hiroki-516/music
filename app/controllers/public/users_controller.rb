@@ -24,7 +24,7 @@ class Public::UsersController < ApplicationController
   end
 
 
-  def comfirm_withdraw
+  def confirm_withdraw
     @user = current_user
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)

@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row m-5 justify-content-center">
+    <div class="col text-center">
+      <h3><strong>本当に退会しますか？</strong></h3>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col text-center">
+      <p>
+        退会すると、会員登録情報や<br>
+        これまでの楽曲投稿が完全に削除され、閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+  </div>
+  <div class="row m-3 justify-content-center">
+    <div class="col-4 text-center">
+      <br>
+      <br>
+      <%= link_to '退会しない', user_path(current_user), class: 'button-39' %>
+      <%= link_to '退会する', users_withdraw_path, method: :patch, class: 'button-39', data: { confirm: "本当に退会しますか？" } %>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>

@@ -30,6 +30,14 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  def is_deleted_text
+    if self.is_deleted == false
+      '有効'
+    else
+      '退会'
+    end
+  end
+  
   
    # 自分がフォローされる（被フォロー）側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -49,5 +57,7 @@ class User < ApplicationRecord
   validates :status, presence: true
   
   enum status: { artist: 0, listener: 1 }
+  
+  
 
 end
