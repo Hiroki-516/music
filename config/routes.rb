@@ -23,8 +23,8 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     resources :posts,only: [:show, :destroy]
 
-
-    patch 'users/:id/withdraw' => 'users#withdraw'
+                          
+    patch 'users/:id/withdraw' => 'users#withdraw', as: 'users_withdraw'
     resources :users,only: [:index, :show, :update]
 
     resources :genres,only: [:index, :create, :edit, :update, :destroy]
@@ -33,12 +33,15 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   scope module: :public do
 
     root "homes#top"
+    # ゲストログイン用
+   
+
     get 'homes/about'
 
     get 'users/confirm_withdraw' => 'users#confirm_withdraw'
     patch 'users/withdraw' => 'users#withdraw'
 
-
+    post 'guest_sign_in', to: 'users#guest_sign_in'
     resources :users,only: [:index, :show, :edit, :update] do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

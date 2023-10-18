@@ -1,5 +1,21 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:guest_sign_in]
+  
+  
+  def guest_sign_in
+    user = User.find_or_create_by!(email: 'guest@example.com') do |user|
+      # バリデーションついてる新規登録情報を以下に記載
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "ゲスト"
+      user.status = User.statuses[:artist]
+      user.introduction = ""
+      # user.skip_confirmation!  # Confirmable を使用している場合は必要
+      # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
+    end
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 
   def index
     @users = User.where(status: "artist")

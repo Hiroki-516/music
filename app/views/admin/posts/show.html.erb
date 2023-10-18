@@ -4,17 +4,16 @@
     <div class="row">
       <div class="col">
         <div><%= image_tag @post.get_image(300,300) %></div>
+        <div><%= audio_tag(polymorphic_path(@post.music), controls: true) %></div>
       </div>
 
       <div class="col">
         <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
         <p><%= image_tag @post.user.get_profile_image(80,80), class:"mt-3 rounded-circle"; %></p>
-        <p>ニックネーム：<%= @post.name %></p>
+        <p>ニックネーム：<%= @post.user.name %></p>
+        <p>曲名：<%= @post.name %></p>
         <p>曲説明：<%= @post.caption %></p>
         <p>ジャンル：<%= @post.genre.name %></p>
-        <p>音声ファイル:<br>
-          <%= audio_tag(polymorphic_path(@post.music), controls: true) %>
-        </p>
 
         <p><%= link_to '削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%></p>
       </div>

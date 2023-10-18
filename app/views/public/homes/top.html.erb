@@ -1,2 +1,8 @@
-<h1>Public::Homes#top</h1>
-<p>Find me in app/views/public/homes/top.html.erb</p>
+<div class="container">
+  <div class="row" >
+    <div style= 'width: 80% ; margin: 0 auto;' class="py-4" >
+      <h3 class="border-bottom"><strong>ゲストログインはこちら</strong></h3>
+      <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+    </div>
+  </div>
+</div>

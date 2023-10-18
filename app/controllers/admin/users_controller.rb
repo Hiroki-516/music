@@ -9,9 +9,9 @@ class Admin::UsersController < ApplicationController
     @posts = @user.posts.page(params[:page])
   end
   
-  def withdraw
-    @user = User.find(params[:id])
-  end
+  # def withdraw
+  #   @user = User.find(params[:id])
+  # end
   
   def update
     @user = User.find(params[:id])
