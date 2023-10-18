@@ -23,8 +23,9 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     resources :posts,only: [:show, :destroy]
 
+
     patch 'users/:id/withdraw' => 'users#withdraw'
-    resources :users,only: [:index, :show]
+    resources :users,only: [:index, :show, :update]
 
     resources :genres,only: [:index, :create, :edit, :update, :destroy]
   end
