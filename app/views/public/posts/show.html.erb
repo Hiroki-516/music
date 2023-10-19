@@ -1,4 +1,5 @@
-<div>
+<!--非同期通信のためのIDを指定-->
+<div id="post_<%= @post.id %>">
   <%= image_tag @post.get_image(100,100) %>
   <%= audio_tag(polymorphic_path(@post.music), volume: 1.0, controls: true) %>
   <p>曲名：<%= @post.name %></p>
@@ -15,13 +16,20 @@
     <%= link_to '削除', post_path(@post), method: :delete, data: { comfirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
     <%#= link_to "削除", post_path(@post), method: :delete %>
   <% end %><br>
-   <%= render "public/favorites/btn", post: @post %>
+  <!--非同期通信のためのクラスを指定している-->
+  <div class="favorite-btn">
+    <%= render "public/favorites/btn", post: @post %>
+  </div>
+  
+  <div>
+    <div class="comments-count">
+    コメント数： <%= @post.post_comments.count %>
+    </div>
+    <div id="post-comments" ><%= render "public/post_comments/index", post: @post %></div>
+    <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+  </div>
 </div>
 
 
-<div>
- <%= render "public/post_comments/index", post: @post %>
- <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
 
-</div>
 

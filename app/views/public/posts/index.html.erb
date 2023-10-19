@@ -1,38 +1,40 @@
 <div class="card-list-container py-5">
-   <div class= "row">
+  <div class= "row">
     <!--ジャンル一覧（ジャンル検索機能-->
-     <div class= "col-md-3 mt-5">
-       <%= render "public/posts/genre_list", genres: @genres %>
-     </div>
+    <div class= "col-md-3 mt-5">
+      <%= render "public/posts/genre_list", genres: @genres %>
+    </div>
    
     <!--おしまい-->
-
-     <div class="col-9">
-       <% @posts.each do |post| %>
-     <div class="card w-50 mx-auto mt-4 shadow-lg">
-        <%= link_to post_path(post.id) do %>
+    
+    <div class="col-9">
+    <% @posts.each do |post| %>
+    <div class="card w-50 mx-auto mt-4 shadow-lg">
+      <%= link_to post_path(post.id) do %>
         <!--画像の幅自体は「w-25」で決定-->
-        <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
-        <% end %>
+      <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
+      <% end %>
         <%#= audio_tag post.music %>
-        <%= audio_tag(polymorphic_path(post.music), controls: true) %>
+      <%= audio_tag(polymorphic_path(post.music), controls: true) %>
       <div class="card-body">
         <%= image_tag post.user.get_profile_image(100,100), class:"mt-1 rounded-circle"; %>
         <span><i class="fas fa-user"></i> By <%= post.user.name %> ｜ </span>
       </div>
 
       <div class="card-title">
-        <%= link_to(post_path(post.id), class:"text-dark") do %>
-        <strong><i class="fa-solid fa-music"></i><span> <%= post.name %></span></strong>
-        <% end %>
+      <strong><i class="fa-solid fa-music"></i><span> <%= post.name %></span></strong>
       </div>
       <div class="card-text">曲説明：<%= post.caption %></div>
-      <%= render "public/favorites/btn", post: post %>
-      <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
+      
+      <div id="post_<%= post.id %>">
+      <div class="favorite-btn" >
+        <%= render "public/favorites/btn", post: post %>
       </div>
-    <% end %>
+      <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
     </div>
-
-  <%= paginate @posts %>
+    <% end %>
+　　</div>
+    <!--</div>-->
+    <%= paginate @posts %>
   </div>
 </div>

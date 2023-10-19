@@ -2,11 +2,11 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
-  
+
   def new
     @post = Post.new
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -16,10 +16,10 @@ class Public::PostsController < ApplicationController
       render :new
     end
   end
-  
-  
+
+
   def index
-    
+
     #ジャンル一覧表示
     @genres = Genre.all
     #音楽投稿一覧表示
@@ -32,25 +32,26 @@ class Public::PostsController < ApplicationController
     elsif post_name = params[:post_name]
       @posts_count = Post.where("name LIKE ?","%"+ post_name + "%")
       @posts = Post.where("name LIKE ?","%"+ post_name + "%").page(params[:page]).per(10)
-    else  
+    else
+
       @posts_count = Post.all
       @posts = Post.all.page(params[:page]).per(10)
     end
   end
-  
+
 
   def show
     #ジャンル一覧表示
     @genres = Genre.all
     @post = Post.find(params[:id])
-    @post_comment = PostComment.new 
+    @post_comment = PostComment.new
   end
 
-  
+
   def edit
     @post = Post.find(params[:id])
   end
-  
+
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
@@ -59,21 +60,21 @@ class Public::PostsController < ApplicationController
       render "edit"
     end
   end
-  
-  
+
+
   def destroy
     post = Post.find(params[:id])
     post.destroy
     redirect_to '/posts'
   end
-  
-  
+
+
   private
-  
+
   def post_params
     params.require(:post).permit(:name, :image, :caption, :music, :genre_id)
   end
-  
+
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user

@@ -1,0 +1,4 @@
+<!--$()ここで「＃：VIEWファイルのID・（.）」でクラスを指定している-->
+$("#post_<%= @post.id %> .comments-count").html("コメント数: <%= @post.post_comments.count %>");
+$("#post_<%= @post.id %> #post-comments").html("<%= j(render 'public/post_comments/index', post: @post) %>");
+$("#post_<%= @post.id %> #post_comment_comment").val("");

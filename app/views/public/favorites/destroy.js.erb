@@ -1,0 +1,3 @@
+ <!--$()ここで「＃：VIEWファイルのID・（.）」でクラスを指定している-->
+ $("#post_<%= @post.id %> .favorite-btn").html("<%= j(render 'public/favorites/btn', post: @post) %>");
+ <!--$("#post_<%#= @post.id %> ").html("<%#= j(render 'public/favorites/btn', post: @post) %>");-->
