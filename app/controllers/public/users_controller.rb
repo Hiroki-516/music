@@ -15,6 +15,14 @@ class Public::UsersController < ApplicationController
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
+  
+  def favorites
+    @user = User.find(params[:id])
+    @posts = @user.posts.page(params[:page])
+    # ユーザーidが、このユーザーの、いいねのレコードを全て取得。post_idも一緒に持ってくる＝あるユーザーがいいねした記事をすべて持ってくる。
+    favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
 
 
   def index

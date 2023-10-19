@@ -43,6 +43,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     post 'guest_sign_in', to: 'users#guest_sign_in'
     resources :users,only: [:index, :show, :edit, :update] do
+      # ユーザーIDが含まれるURLを作成できる
+      member do
+        get :favorites
+      end
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       resource :relationships, only: [:create, :destroy]

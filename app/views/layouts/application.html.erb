@@ -44,14 +44,14 @@
                 <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                <!--<li class="nav-item"><%#= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;-->
+                <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
               <% end %>
             <% elsif user_signed_in? %>
                 <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                <li class="nav-item"><%#= link_to "いいね一覧", user_path(current_user), class: 'button-81'%></li>&nbsp;
+                <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
                 <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
             <% else %>
               <li class="nav-item"><%= link_to "About", homes_about_path, class: 'button-81' %></li>&nbsp;

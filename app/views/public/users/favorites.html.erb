@@ -1,0 +1,46 @@
+<div class="container">
+  <div style= 'width: 80% ; margin: 0 auto;' class="py-4" >
+    <h3 class="border-bottom"><strong>いいね一覧</strong></h3>
+    <table class="table table-hover table-inverse">
+    <thead>
+      <tr>
+        <th>ジャケット画像</th>
+        <th>曲名</th>
+        <th>楽曲再生</th>
+        <th>曲説明</th>
+        <th>アーティスト画像</th>
+        <th>アーティスト名</th>
+      </tr>
+    </thead>
+    <tbody>
+       <% @favorite_posts.each do |post|%>
+      <tr>
+        <td>
+          <%= link_to post_path(post.id) do %>
+          <!--画像の幅自体は「w-25」で決定-->
+            <%= image_tag post.get_image(150,150), class:"card-img-top w-100 "; %>
+          <% end %>
+        </td>
+        <td><%= post.name %></td>
+        <td>
+          <%= audio_tag(polymorphic_path(post.music), controls: true) %>
+        </td>
+        <td><%= post.caption %></td>
+        <td>
+          <%= link_to(user_path(post.user.id), class:"text-dark") do %>
+          <%= image_tag post.user.get_profile_image(80,80), class:"mt-1 rounded-circle"; %>
+          <% end %>
+        </td>
+        <td><%= post.user.name %></td>
+      </tr>
+        <% end %>
+    </tbody>
+    </table>
+  </div>
+
+  <div class="outer">
+    <div class="inner">
+      <%= paginate @posts %>
+    </div>
+  </div>
+ </div>
