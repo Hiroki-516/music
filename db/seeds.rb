@@ -43,6 +43,16 @@ listener1 = User.find_or_create_by!(email: "listener1@listener1") do |user|
 end
 
 
+artist3 = User.find_or_create_by!(email: "artist3@artist3") do |user|
+  user.name = "アーティスト3"
+  user.introduction = "アーティスト3です！"
+  user.status = "artist"
+  user.password = "artist3"
+  user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/artist3-photo.png"), filename:"artist3-photo.png")
+end
+
+
+
 genre1 = Genre.find_or_create_by!(name: "BGM")
 
 
@@ -57,14 +67,23 @@ Post.find_or_create_by!(name: "愉快な遊び場") do |post|
   post.caption = "なんか愉快な雰囲気にならないかい。"
   post.user = artist1
   post.genre = genre1
-  post.music = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/yukai.wav"), filename:"yukai.wav")
+  post.music = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/yukai.mp3"), filename:"yukai.mp3")
 end
 
 
-Post.find_or_create_by!(name: "迫りくるBGM") do |post|
+Post.find_or_create_by!(name: "怪物たちよ（saucydog.cover）") do |post|
   post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/artist2-jacket.png"), filename:"artist2-jacket.png")
-  post.caption = "怖い雰囲気と迫りくる感じをイメージして作成しました。"
+  post.caption = "この歌が好きで弾き語りでアレンジしてみました。"
   post.user = artist2
+  post.genre = genre2
+  post.music = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/monsters-saucy.mp3"), filename:"monsters-saucy.mp3")
+end
+
+
+Post.find_or_create_by!(name: "迫りくる恐怖") do |post|
+  post.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/artist3-jacket.jpg"), filename:"artist3-jacket.jpg")
+  post.caption = "この歌が好きで弾き語りでアレンジしてみました。"
+  post.user = artist3
   post.genre = genre1
-  post.music = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/horrorworld.wav"), filename:"horrorworld.wav")
+  post.music = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/horrorworld.mp3"), filename:"horrorworld.mp3")
 end

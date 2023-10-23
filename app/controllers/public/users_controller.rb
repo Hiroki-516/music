@@ -1,7 +1,8 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except:[:guest_sign_in]
-  
-  
+  before_action :ensure_guest_user, only: [:edit]
+
+
   def guest_sign_in
     user = User.find_or_create_by!(email: 'guest@example.com') do |user|
       # バリデーションついてる新規登録情報を以下に記載
@@ -15,7 +16,7 @@ class Public::UsersController < ApplicationController
     sign_in user
     redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
-  
+
   def favorites
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
@@ -26,7 +27,7 @@ class Public::UsersController < ApplicationController
 
 
   def index
-    @users = User.where(status: "artist")
+    @users = User.where(status: "artist").where(is_deleted: false)
   end
 
   def show
@@ -49,6 +50,17 @@ class Public::UsersController < ApplicationController
 
 
   def confirm_withdraw
+    # @user = current_user
+    # # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    # @user.update(is_deleted: true)
+    # #セッション情報を全て削除
+    # reset_session
+    # flash[:notice] = "退会処理を実行いたしました"
+    # #退会後トップ画面に遷移
+    # redirect_to root_path
+  end
+  
+  def withdraw
     @user = current_user
     # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     @user.update(is_deleted: true)
@@ -69,6 +81,13 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     unless @user == current_user
       redirect_to user_path(current_user)
+    end
+  end
+
+  def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.email == "guest@example.com"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 
