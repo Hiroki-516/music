@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, except:[:guest_sign_in]
+  before_action :ensure_correct_user, only: [:update, :edit]
   before_action :ensure_guest_user, only: [:edit]
 
 
