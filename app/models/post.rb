@@ -6,8 +6,8 @@ class Post < ApplicationRecord
   
   belongs_to :genre
   belongs_to :user
-  has_many :favorites
-  has_many :post_comments
+  has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   def get_image(width, height)
     unless image.attached?

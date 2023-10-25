@@ -31,8 +31,24 @@ html, body {
  }
 
  main{
-   /*color: white;*/
+   color: white;
    background-color: #888888;
+ }
+ 
+ .musicbody{
+   color: white;
+ }
+ 
+ .card-title{
+   color: black;
+ }
+ 
+ .card-text{
+   color: black;
+ }
+ 
+ .card-body{
+   color: black;
  }
 
 .image-container {
@@ -61,7 +77,7 @@ html, body {
   gap: 20px; /* 商品間の間隔を設定 */
 }
 
-.new_item {
+.new_post {
   width: calc(33.33% - 20px); /* 横に並べる要素の幅を設定 */
   padding: 10px; /* 商品の周りに余白を追加 */
   border: 1px solid #ccc; /* 商品のボーダーを追加 */

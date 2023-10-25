@@ -23,7 +23,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     resources :posts,only: [:show, :destroy]
 
-                          
+
     patch 'users/:id/withdraw' => 'users#withdraw', as: 'users_withdraw'
     resources :users,only: [:index, :show, :update]
 
@@ -34,7 +34,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
     root "homes#top"
     # ゲストログイン用
-   
+
 
     get 'homes/about'
 
@@ -42,11 +42,13 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
     patch 'users/withdraw' => 'users#withdraw'
 
     post 'guest_sign_in', to: 'users#guest_sign_in'
+    post 'users/search' => 'users#search'
     resources :users,only: [:index, :show, :edit, :update] do
       # ユーザーIDが含まれるURLを作成できる
       member do
         get :favorites
       end
+
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
       resource :relationships, only: [:create, :destroy]

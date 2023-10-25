@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
 
 
   def index
-    @users = User.where(status: "artist").where(is_deleted: false)
+    @users = User.where(status: "artist", is_deleted: false).page(params[:page]).per(10)
   end
 
   def show
@@ -50,14 +50,7 @@ class Public::UsersController < ApplicationController
 
 
   def confirm_withdraw
-    # @user = current_user
-    # # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    # @user.update(is_deleted: true)
-    # #セッション情報を全て削除
-    # reset_session
-    # flash[:notice] = "退会処理を実行いたしました"
-    # #退会後トップ画面に遷移
-    # redirect_to root_path
+   
   end
   
   def withdraw
@@ -70,6 +63,12 @@ class Public::UsersController < ApplicationController
     #退会後トップ画面に遷移
     redirect_to root_path
   end
+  
+  def search
+    @users = User.where(status: "artist", is_deleted: false).search(params[:keyword])
+    render "index"
+  end
+  
 
   private
 

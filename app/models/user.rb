@@ -38,6 +38,11 @@ class User < ApplicationRecord
     end
   end
   
+  # 検索メソッドが追加され指定されたキーワードでユーザーを検索できる
+  def self.search(keyword)
+    where("name LIKE ?", "%#{keyword}%")
+  end
+  
   
    # 自分がフォローされる（被フォロー）側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy

@@ -1,10 +1,10 @@
 <!--非同期通信のためのIDを指定-->
 <div id="post_<%= @post.id %>">
-  <%= image_tag @post.get_image(100,100) %>
+  <%= image_tag @post.get_image(100,100) %><br>
   <%= audio_tag(polymorphic_path(@post.music), volume: 1.0, controls: true) %>
   <p>曲名：<%= @post.name %></p>
   <p>ジャンル：<%= @post.genre.name %></p>
-  <p>曲説明：<%= @post.caption %></p>
+  <pre class="musicbody" >曲説明：<%= @post.caption %></pre>
   <%= link_to user_path(@post.user.id) do %>
   <p><%= image_tag @post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
   <p>ニックネーム：<%= @post.user.name %></p>
@@ -25,7 +25,9 @@
     <div class="comments-count">
     コメント数： <%= @post.post_comments.count %>
     </div>
-    <div id="post-comments" ><%= render "public/post_comments/index", post: @post %></div>
+    <div id="post-comments" >
+      <%= render "public/post_comments/index", post: @post %>
+    </div>
     <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
   </div>
 </div>

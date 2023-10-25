@@ -22,6 +22,7 @@
       <nav class="navbar-nav">
         <div class="container-fluid">
           <div class="row">
+            <% if user_signed_in? %>
             <div>
               <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
            
@@ -35,7 +36,7 @@
   
               <% end %>
             </div> 
-              
+            <% end %>  
            
             <a class="navbar-brand mx-auto" href="/"><span><%= image_tag 'dambo.jpg', size:'60x60'%></span></a>
 
@@ -78,19 +79,13 @@
 
           <div class="row">
             <% if user_signed_in? %>
-            <div class="col-5 ">
-              
-             
-                <div class="col-6 text-right">
-                  <%= render "layouts/search" %>
-                </div>
-              <% end %>
-                </div>
+            <div class="col-8 ">
+            </div>  
+            <div class="col-4 mx-auto">
+              <%= render "layouts/search" %>
             </div>
-
-
+          <% end %>
           </div>
-          <!--</div>-->
         </div>
       </nav>
     </header>
