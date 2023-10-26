@@ -34,6 +34,9 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page])
+    if @user.is_deleted == true
+      redirect_to users_path
+    end
   end
 
   def edit
@@ -66,7 +69,7 @@ class Public::UsersController < ApplicationController
   end
   
   def search
-    @users = User.where(status: "artist", is_deleted: false).search(params[:keyword])
+    @users = User.where(status: "artist", is_deleted: false).search(params[:keyword]).page(params[:page]).per(10)
     render "index"
   end
   

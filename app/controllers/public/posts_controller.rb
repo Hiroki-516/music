@@ -26,16 +26,16 @@ class Public::PostsController < ApplicationController
     #クリエパラメータ(genre_id)をとりだす
     if @genre_id = params[:genre_id]
       #genre_idが同じものを全てとりだす
-      posts =  Post.where(genre_id: @genre_id)
+      posts = Post.joins(:user).where(genre_id: @genre_id, users: { is_deleted: 'false' })
       @posts_count = posts.count
       @posts = posts.page(params[:page]).per(10)
     #なければ全てとりだす
     elsif post_name = params[:post_name]
       @posts_count = Post.where("name LIKE ?","%"+ post_name + "%").count
-      @posts = Post.where("name LIKE ?","%"+ post_name + "%").page(params[:page]).per(10)
+      @posts = Post.joins(:user).where("posts.name LIKE ? AND users.is_deleted = false","%"+ post_name + "%").page(params[:page]).per(10)
     else
       @posts_count = Post.all.count
-      @posts = Post.all.page(params[:page]).per(10)
+      @posts = Post.joins(:user).where(users: { is_deleted: 'false' }).page(params[:page]).per(10)
     end
   end
 
@@ -45,6 +45,7 @@ class Public::PostsController < ApplicationController
     @genres = Genre.all
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    @post_comments = PostComment.joins(:user).where(post_id: @post.id, users: { is_deleted: 'false'})
   end
 
 
@@ -78,7 +79,7 @@ class Public::PostsController < ApplicationController
   def ensure_correct_user
     @post = Post.find(params[:id])
     unless @post.user == current_user
-      redirect_to books_path
+      redirect_to posts_path
     end
   end
 end
