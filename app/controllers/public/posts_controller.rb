@@ -45,6 +45,7 @@ class Public::PostsController < ApplicationController
     @genres = Genre.all
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
+    # 投稿一つのIDに対してのコメントと表記したいため（post_id: @post.id）と表記している
     @post_comments = PostComment.joins(:user).where(post_id: @post.id, users: { is_deleted: 'false'})
   end
 
