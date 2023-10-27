@@ -139,3 +139,10 @@ footer {
     color: white;
     text-decoration: none;
   }
+  
+  
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* 余白を追加する場合、適宜調整してください */
+}

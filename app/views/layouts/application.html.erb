@@ -38,7 +38,7 @@
             </div> 
             <% end %>  
            
-            <a class="navbar-brand mx-auto" href="/"><span><%= image_tag 'dambo.jpg', size:'60x60'%></span></a>
+            <a class="navbar-brand mx-auto" href="/"><span><%= image_tag 'music-logo.png', size:'400x60'%></span></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -69,7 +69,7 @@
                   <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
                   <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
               <% else %>
-                <li class="nav-item"><%= link_to "About", homes_about_path, class: 'button-81' %></li>&nbsp;
+                <li class="nav-item"><%= link_to "概要", homes_about_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: 'button-81' %></li>
               <% end %>
