@@ -1,34 +1,49 @@
-<!--非同期通信のためのIDを指定-->
-<div id="post_<%= @post.id %>">
-  <%= image_tag @post.get_image(100,100) %><br>
-  <%= audio_tag(polymorphic_path(@post.music), volume: 1.0, controls: true) %>
-  <p>曲名：<%= @post.name %></p>
-  <p>ジャンル：<%= @post.genre.name %></p>
-  <pre class="musicbody" >曲説明：<%= @post.caption %></pre>
-  <%= link_to user_path(@post.user.id) do %>
-  <p><%= image_tag @post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
-  <p>ニックネーム：<%= @post.user.name %></p>
-  <% end %>
-
-  <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @post.user == current_user %>
-    <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
-    <%= link_to '削除', post_path(@post), method: :delete, data: { comfirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
-    <%#= link_to "削除", post_path(@post), method: :delete %>
-  <% end %><br>
-  <!--非同期通信のためのクラスを指定している-->
-  <div class="favorite-btn">
-    <%= render "public/favorites/btn", post: @post %>
-  </div>
+<div class="container">
+  <div style= 'width: 100% ; margin: 0 auto;' class="py-3" >
+    <h3 class="border-bottom"><strong>音声投稿詳細</strong></h3>
+    <div class="row">
+      <div class="col-4">
+        <div><%= image_tag @post.get_image(300,300) %></div><br>
+        <div><%= audio_tag(polymorphic_path(@post.music), volume: 0.5, controls: true) %></div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.querySelector('audio'); // 音声要素を取得
+          audio.volume = 0.5; // ボリュームを半分に設定
+        });
+      </script>
+      
+      <!--非同期通信のためのIDを指定-->
+      <div class="col-8" id="post_<%= @post.id %>">
+        <p>曲名：<%= @post.name %></p>
+        <p>ジャンル：<%= @post.genre.name %></p>
+        <pre class="musicbody" >曲説明：<%= @post.caption %></pre>
+        <%= link_to user_path(@post.user.id) do %>
+        <p><%= image_tag @post.user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %></p>
+        <p>ニックネーム：<%= @post.user.name %></p>
+        <% end %>
+        <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
+        
+        <% if @post.user == current_user %>
+          <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
+          <%= link_to '削除', post_path(@post), method: :delete, data: { comfirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
+          <%#= link_to "削除", post_path(@post), method: :delete %>
+        <% end %><br>
+        <!--非同期通信のためのクラスを指定している-->
+        <div class="favorite-btn">
+          <%= render "public/favorites/btn", post: @post %>
+        </div>
   
-  <div>
-    <div class="comments-count">
-    コメント数： <%= @post_comments.count %>
+  
+        <div class="comments-count">
+        コメント数： <%= @post_comments.count %>
+        </div>
+        <div id="post-comments" >
+          <%= render "public/post_comments/index", post: @post, post_comments: @post_comments %>
+        </div>
+          <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+      </div>
     </div>
-    <div id="post-comments" >
-      <%= render "public/post_comments/index", post: @post, post_comments: @post_comments %>
-    </div>
-    <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
   </div>
 </div>
 

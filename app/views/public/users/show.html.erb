@@ -66,7 +66,7 @@
               <%= image_tag post.get_image(150,150), class:"card-img-top w-25"; %>
             <% end %><br>
             <!--音声投稿部分-->
-            <%= audio_tag(polymorphic_path(post.music), controls: true) %><br>
+            <%= audio_tag(polymorphic_path(post.music), volume: 0.5, controls: true) %><br>
             <div class="card-text">
               曲説明：<%= post.caption %>
             </div>

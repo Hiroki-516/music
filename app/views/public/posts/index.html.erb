@@ -15,9 +15,17 @@
             <%= link_to post_path(post.id) do %>
           <!--画像の幅自体は「w-25」で決定-->
               <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
-            <% end %>
-        <%#= audio_tag post.music %>
-            <%= audio_tag(polymorphic_path(post.music), controls: true) %>
+            <% end %><br>
+      
+            <%= audio_tag(polymorphic_path(post.music), volume: 0.5, controls: true, id: "audio_#{post.id}") %>
+            
+            <!-- JavaScriptで各音声要素のボリュームを設定 -->
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                var audio = document.getElementById("audio_<%= post.id %>"); // 音声要素を取得
+                audio.volume = 0.5; // ボリュームを半分に設定
+              });
+            </script>
        
             <div class="card-title">
               <strong><i class="fa-solid fa-music"></i><span> <%= post.name %></span></strong>
