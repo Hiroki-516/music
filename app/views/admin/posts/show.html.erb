@@ -13,6 +13,7 @@
         <p>ニックネーム：<%= @post.user.name %></p>
         <p>曲名：<%= @post.name %></p>
         <p>曲説明：<%= @post.caption %></p>
+        <p class="sentiment-score<%= @post.score < 0 ? ' negative-score' : '' %>">本文の感情分析スコア: [<%= @post.score %>]</p>
         <p>ジャンル：<%= @post.genre.name %></p>
 
         <p><%= link_to '削除', admin_post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%></p>

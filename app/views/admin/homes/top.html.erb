@@ -4,7 +4,7 @@
       <h3 class="border-bottom"><strong>音楽投稿一覧</strong></h4>
     </div>
   </div>
-  <div class="row justify-content-center m-3">
+  <div class="row justify-content-center m-3 w-100">
     <div class="col">
       <table class='table table-hover table-inverse'>
        <thead>
@@ -16,7 +16,7 @@
           <th>音楽ジャケット画像</th>
           <th>曲名</th>
           <td>曲説明</td>
-          <th></th>
+          <th>曲説明の感情分析スコア</th>
         </tr>
        </thead>
        <tbody>
@@ -29,13 +29,13 @@
             <td><%= image_tag post.get_image(100,100), class:"card-img-top w-50"; %></td>
             <td><%= post.name %></td>
             <td><%= post.caption %></td>
-            <th><%#= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{post.id}"%></th>
+            <th><span class="sentiment-score"><%= post.score %></span></th>
           </tr>
          <% end %>
        </tbody>
       </table>
       <div class="outer">
-      <div class="inner">
+      <div class="pagination-type">
         <%= paginate @posts %>
       </div>
       </div>

@@ -24,7 +24,7 @@
               <tr>
                 <td>
                   <%= link_to user_path(user.id) do %>
-                  <%= image_tag user.get_profile_image(100,100), size: '50x50' %>
+                  <%= image_tag user.get_profile_image(100,100), size: '70x70' %>
                   <% end %>
                 </td>
                 <td><%= user.name %></td>
@@ -42,7 +42,7 @@
       </div>  
     </div>    
   </div>
-  <div class="pagination-container text-center">
+  <div class="pagination-type text-center">
     <%= paginate @users %>
   </div>
 </div>
