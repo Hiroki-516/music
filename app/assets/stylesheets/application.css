@@ -19,9 +19,17 @@ html, body {
    min-height: 100vh;
  }
 
+/* けいおんフォントを指定 */
+@font-face {
+  font-family: 'KEIFONT';
+  src: url('/assets/fonts/KEIFONT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
  header, main, footer {
    /*font-family: "Shippori Mincho",serif;*/
-   font-family: 'Playfair Display', serif;
+   font-family: 'KEIFONT', serif;
  }
 
  header, footer{
@@ -34,19 +42,19 @@ html, body {
    color: white;
    background-color: #888888;
  }
- 
+
  .musicbody{
    color: white;
  }
- 
+
  .card-title{
    color: black;
  }
- 
+
  .card-text{
    color: black;
  }
- 
+
  .card-body{
    color: black;
  }
@@ -139,14 +147,13 @@ footer {
     color: white;
     text-decoration: none;
   }
-  
-  
+
+
 .pagination-type {
   display: flex;
   justify-content: center;
   margin-top: 20px; /* 余白を追加する場合、適宜調整してください */
 }
-
 
 .negative-score {
   color: red;

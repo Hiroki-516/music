@@ -19,8 +19,33 @@
 
   <body class ="d-flex flex-column vh-100">
     <header class="header p-4">
+      <!--お試しbootstrapレイアウトヘッダー-->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
       <nav class="navbar-nav">
-        <div class="container-fluid">
+        <div class="container">
           <div class="row">
             <% if user_signed_in? %>
             <div>
@@ -55,7 +80,7 @@
                   <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'button-81' %></li>&nbsp;
                   <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: 'button-81' %></li>&nbsp;
                   <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'button-81' %></li>
-                <% else %> <!--customer側のheader-->
+                <% else %> <!--会員側のheader-->
                   <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
                   <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
                   <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
@@ -63,11 +88,11 @@
                   <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
                 <% end %>
               <% elsif user_signed_in? %>
-                  <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
-                  <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
+                <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
+                <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
+                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
+                <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
+                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
               <% else %>
                 <li class="nav-item"><%= link_to "概要", homes_about_path, class: 'button-81' %></li>&nbsp;
                 <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: 'button-81' %></li>&nbsp;
