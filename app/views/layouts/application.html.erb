@@ -20,26 +20,40 @@
   <body class ="d-flex flex-column vh-100">
     <header class="header p-4">
       <!--お試しbootstrapレイアウトヘッダー-->
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark py-3">
         <div class="container">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">
+            <h2 class="text-white pt-1">アマチュア音楽広場</h2>
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
-              </li>
+            <ul class="navbar-nav ml-auto">
+              <% if admin_signed_in? %>
+                <% if request.fullpath.include? "/admin" %> <!--admin側のheader-->
+                  <li class="nav-item"><%= link_to "投稿一覧", admin_path %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'button-81' %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: 'button-81' %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'button-81' %></li>
+                <% else %> <!--会員側のheader-->
+                  <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
+                  <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
+                  <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
+                <% end %>
+              <% elsif user_signed_in? %>
+                <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: "nav-link" %></li>&nbsp;
+                <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: "nav-link" %></li>&nbsp;
+                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>&nbsp;
+                <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: "nav-link" %></li>&nbsp;
+                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+              <% else %>
+                <li class="nav-item"><%= link_to "概要", homes_about_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+              <% end %>
             </ul>
           </div>
         </div>

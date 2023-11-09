@@ -37,6 +37,10 @@ html, body {
    background-color: #FFF6EA;
    border-color: rgba(47, 39, 37, 0.25);
  }
+ 
+ .navbar .nav-item {
+   color:  #FFF !important;
+ }
 
  main{
    color: white;
