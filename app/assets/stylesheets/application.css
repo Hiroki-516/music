@@ -18,6 +18,13 @@ html, body {
    padding: 0;
    min-height: 100vh;
  }
+ 
+ :root {
+   --primary: #0d6efd;
+   --dark: #21252f;
+   --body: #888;
+   
+ }
 
 /* けいおんフォントを指定 */
 @font-face {
@@ -38,8 +45,11 @@ html, body {
    border-color: rgba(47, 39, 37, 0.25);
  }
  
- .navbar .nav-item {
+ .navbar .nav-link {
    color:  #FFF !important;
+   font-size: 17px;
+   font-weight: 1000;
+   padding-top: 19px;
  }
 
  main{
