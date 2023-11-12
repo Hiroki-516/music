@@ -4,9 +4,9 @@
     <div class= "col-md-3 mt-5">
       <%= render "public/posts/genre_list", genres: @genres %>
     </div>
-   
+
     <!--おしまい-->
-    
+
     <div class="col-9">
     <% @posts.each do |post| %>
       <div class="card w-50 mx-auto mt-4 shadow-lg">
@@ -16,24 +16,29 @@
           <!--画像の幅自体は「w-25」で決定-->
               <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
             <% end %><br>
-      
+
             <%= audio_tag(polymorphic_path(post.music), volume: 0.5, controls: true, id: "audio_#{post.id}") %>
-            
+
             <!-- JavaScriptで各音声要素のボリュームを設定 -->
             <script>
-              document.addEventListener('DOMContentLoaded', function() {
+              // document.addEventListener('DOMContentLoaded', function() {
+              //   var audio = document.getElementById("audio_<%#= post.id %>"); // 音声要素を取得
+              //   audio.volume = 0.5; // ボリュームを半分に設定
+              // });
+
+              window.addEventListener('load', function() {
                 var audio = document.getElementById("audio_<%= post.id %>"); // 音声要素を取得
                 audio.volume = 0.5; // ボリュームを半分に設定
               });
             </script>
-       
+
             <div class="card-title">
               <strong><i class="fa-solid fa-music"></i><span> <%= post.name %></span></strong>
             </div>
              <h6 class="card-subtitle mb-2 text-muted">
                <%= post.genre.name %>
              </h6>
-            
+
             <div class="card-text">曲説明：<%= post.caption %></div>
             <div id="post_<%= post.id %>">
               <div class="favorite-btn" >
@@ -42,17 +47,17 @@
               <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %></span>
             </div>
           </div>
-          
+
           <div class="col-5 p-0">
             <div class="card-body">
               <%= image_tag post.user.get_profile_image(100,100), class:"mt-1 rounded-circle"; %><br>
-              <i class="fas fa-user"></i> By <%= post.user.name %> 
+              <i class="fas fa-user"></i> By <%= post.user.name %>
             </div>
           </div>
-          
+
         </div>
-       
-     
+
+
       </div>
     <% end %>
 　　</div>

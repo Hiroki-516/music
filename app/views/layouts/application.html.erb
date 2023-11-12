@@ -22,39 +22,66 @@
       <!--お試しbootstrapレイアウトヘッダー-->
       <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark py-3">
         <div class="container">
-          <a class="navbar-brand" href="#">
-            <h2 class="text-white pt-1">アマチュア音楽広場</h2>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <% if admin_signed_in? %>
-                <% if request.fullpath.include? "/admin" %> <!--admin側のheader-->
-                  <li class="nav-item"><%= link_to "投稿一覧", admin_path %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'button-81' %></li>
-                <% else %> <!--会員側のheader-->
-                  <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
-                  <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
-                  <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
-                <% end %>
-              <% elsif user_signed_in? %>
-                <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: "nav-link" %></li>&nbsp;
-                <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: "nav-link" %></li>&nbsp;
-                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>&nbsp;
-                <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: "nav-link" %></li>&nbsp;
-                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
-              <% else %>
-                <li class="nav-item"><%= link_to "概要", homes_about_path, class: "nav-link" %></li>
-                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
-                <button type="button" class="btn btn-primary btn-sm ml-3"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></button>
+          <div class="row">
+            <div class="col-4">
+              <a class="navbar-brand" href="/">
+                <h2 class="text-white pt-1 mr-auto">アマチュア音楽広場</h2>
+              </a>
+            </div>
+            <% if user_signed_in? %>
+            <div class="text-center col-2">
+              <%= link_to user_path(current_user), class: 'text-white' do %>
+                <%= image_tag current_user.get_profile_image(50,50), class:"mt-3 rounded-circle"; %><br>
+                <%= current_user.name %>
+                <!--普通のラジオボタンに対してのアーティストステータス表記方法-->
+                <%#= current_user.status %>
+                <!--enum利用した場合のアーティストステータス表記-->
+                <%= User.statuses_i18n[current_user.status] %>
               <% end %>
-            </ul>
+            </div>
+            <% end %>
+            <div class="col-6">
+              <div class="row">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav ml-auto">
+                    <% if admin_signed_in? %>
+                      <% if request.fullpath.include? "/admin" %> <!--admin側のheader-->
+                        <li class="nav-item"><%= link_to "投稿一覧", admin_path %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "ユーザー一覧", admin_users_path, class: 'button-81' %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: 'button-81' %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'button-81' %></li>
+                      <% else %> <!--会員側のheader-->
+                        <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: 'button-81' %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: 'button-81' %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: 'button-81' %></li>&nbsp;
+                        <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: 'button-81'%></li>&nbsp;
+                        <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete,class: 'button-81' %></li>
+                      <% end %>
+                    <% elsif user_signed_in? %>
+                      <li class="nav-item"><%= link_to "新規音楽投稿", new_post_path, class: "nav-link" %></li>&nbsp;
+                      <li class="nav-item"><%= link_to "アーティスト一覧", users_path, class: "nav-link" %></li>&nbsp;
+                      <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>&nbsp;
+                      <li class="nav-item"><%= link_to "いいね一覧", favorites_user_path(current_user), class: "nav-link" %></li>&nbsp;
+                      <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+                    <% else %>
+                      <li class="nav-item"><%= link_to "概要", homes_about_path, class: "nav-link" %></li>
+                      <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
+                      <button type="button" class="btn btn-primary btn-sm ml-3 mb-2"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></button>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <div class="row">
+              <% if user_signed_in? %>
+                <div class="ml-auto">
+                  <%= render "layouts/search" %>
+                </div>
+              <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </nav>
@@ -64,7 +91,7 @@
             <% if user_signed_in? %>
             <div>
               <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
-           
+
               <%= link_to user_path(current_user) do %>
                 <%= image_tag current_user.get_profile_image(100,100), class:"mt-3 rounded-circle"; %><br>
                 <%= current_user.name %>
@@ -72,22 +99,22 @@
                 <%#= current_user.status %>
                 <!--enum利用した場合のアーティストステータス表記-->
                 <%= User.statuses_i18n[current_user.status] %>
-  
+
               <% end %>
-            </div> 
-            <% end %>  
-           
+            </div>
+            <% end %>
+
             <a class="navbar-brand mx-auto" href="/"><span><%= image_tag 'music-logo.png', size:'400x60'%></span></a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <!--<div class="collapse navbar-collapse" id="navbarNavDropdown">-->
-          
+
             <div class="row">
               <ul class="navbar-nav ml-auto d-flex flex-row">
               <!--<div class="col-4 ">-->
-  
+
               <% if admin_signed_in? %>
                 <% if request.fullpath.include? "/admin" %> <!--admin側のheader-->
                   <li class="nav-item"><%= link_to "投稿一覧", admin_path, class: 'button-81' %></li>&nbsp;
@@ -119,7 +146,7 @@
           <div class="row">
             <% if user_signed_in? %>
             <div class="col-8 ">
-            </div>  
+            </div>
             <div class="col-4 mx-auto">
               <%= render "layouts/search" %>
             </div>
@@ -131,6 +158,9 @@
     <main>
     <% flash.each do |message_type, message| %>
       <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
+    <% if user_signed_in? %>
+      <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
     <% end %>
     <%= yield %>
     </main>
