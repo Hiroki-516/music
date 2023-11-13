@@ -24,9 +24,9 @@
           <tr>
             <td><%= link_to post.created_at.strftime('%Y/%m/%d %H:%M:%S'), admin_post_path(post.id), class:"link" %></td>
             <td><%= post.user.name %> </td>
-            <td><%= image_tag post.user.get_profile_image(100,100), class:"mt-3 rounded-circle w-50"; %></td>
+            <td><%= image_tag post.user.get_profile_image(100,100), class:"mt-3 rounded-circle w-100"; %></td>
             <td><%= post.user.status_i18n %></td>
-            <td><%= image_tag post.get_image(100,100), class:"card-img-top w-50"; %></td>
+            <td><%= image_tag post.get_image(100,100), class:"card-img-top w-100"; %></td>
             <td><%= post.name %></td>
             <td><%= post.caption %></td>
             <th><span class="sentiment-score"><%= post.score %></span></th>

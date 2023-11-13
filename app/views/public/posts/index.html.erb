@@ -25,10 +25,11 @@
               //   var audio = document.getElementById("audio_<%#= post.id %>"); // 音声要素を取得
               //   audio.volume = 0.5; // ボリュームを半分に設定
               // });
-
-              window.addEventListener('load', function() {
-                var audio = document.getElementById("audio_<%= post.id %>"); // 音声要素を取得
-                audio.volume = 0.5; // ボリュームを半分に設定
+              $(document).on('turbolinks:load', function() {
+                // window.addEventListener('load', function() {
+                  var audio = document.getElementById("audio_<%= post.id %>"); // 音声要素を取得
+                  audio.volume = 0.5; // ボリュームを半分に設定
+                // });
               });
             </script>
 

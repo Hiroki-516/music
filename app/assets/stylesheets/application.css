@@ -46,9 +46,9 @@ html, body {
  }
  .navbar .nav-link {
    color:  #FFF !important;
-   font-size: 17px;
-   font-weight: 1000;
-   padding-top: 19px;
+   /*font-size: 17px;*/
+   /*font-weight: 1000;*/
+   /*padding-top: 19px;*/
  }
 
  main{

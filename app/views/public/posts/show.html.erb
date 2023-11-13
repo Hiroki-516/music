@@ -4,15 +4,17 @@
     <div class="row">
       <div class="col-4">
         <div><%= image_tag @post.get_image(300,300) %></div><br>
-        <div><%= audio_tag(polymorphic_path(@post.music), volume: 0.5, controls: true) %></div>
+        <div><%= audio_tag(polymorphic_path(@post.music), volume: 0.5, controls: true, id: "audio_#{@post.id}") %></div>
       </div>
       <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          var audio = document.querySelector('audio'); // 音声要素を取得
+        $(document).on('turbolinks:load', function() {
+        // document.addEventListener('DOMContentLoaded', function() {
+          var audio = document.getElementById("audio_<%= @post.id %>"); // 音声要素を取得
           audio.volume = 0.5; // ボリュームを半分に設定
+        // });
         });
       </script>
-      
+
       <!--非同期通信のためのIDを指定-->
       <div class="col-8" id="post_<%= @post.id %>">
         <p>曲名：<%= @post.name %></p>
@@ -23,7 +25,7 @@
         <p>ニックネーム：<%= @post.user.name %></p>
         <% end %>
         <p>投稿日：<%= @post.created_at.strftime('%Y/%m/%d') %></p>
-        
+
         <% if @post.user == current_user %>
           <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
           <%= link_to '削除', post_path(@post), method: :delete, data: { comfirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
@@ -33,8 +35,8 @@
         <div class="favorite-btn">
           <%= render "public/favorites/btn", post: @post %>
         </div>
-  
-  
+
+
         <div class="comments-count">
         コメント数： <%= @post_comments.count %>
         </div>
