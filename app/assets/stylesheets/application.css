@@ -219,7 +219,10 @@ footer {
   color: red;
 }
 
-
+body {
+  background-image: image-url("music-photo.jpg");
+  
+}
 
 
 
