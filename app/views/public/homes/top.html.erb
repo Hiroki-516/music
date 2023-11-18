@@ -1,7 +1,7 @@
-<div class="hero vh-100 d-flex align-items-center" id="home">
+<!--<div class="hero vh-100 d-flex align-items-center" id="home">-->
   <div class="container">
     <div class="row">
-      <div class="col-lg-7 mx-auto">
+      <div class="col-lg-7 mx-auto text-center">
         <h1>ようこそアマチュア音楽広場へ！</h1>
         <p>
           みなさんの個性あふれた音楽を自由に上げよう！
@@ -10,37 +10,47 @@
         </p>
       </div>
     </div>
-  </div>
-  
-</div>
-
-
-<div class="container">
-  <div class="row" >
-    <div class= "col-md-12 mt-5">
-      <div class="image-container mx-auto mt-5 mb-5">
-      <%= image_tag 'music-photo.jpg', alt: 'Image', class: "img-fluid w-80 h-60 mx-auto d-block" %>
-        <div class="main-text">
-          <div class="text-content">
-            <h4>ようこそ！！アマチュア音楽広場へ！</h4>
-            <p><strong>みなさんの個性あふれた音楽を自由に上げよう！</strong></p>
-            <p><strong>聴くのが大好きな人はあなただけの新しい音楽をみつけられるぞ！</strong></p>
-            <p><strong>さあ、新しい音楽の世界へいざゆかん！！</strong></p>
-          </div>
-        </div>
-    </div>
     <div class="row" >
-      <div class= "col-md-12 mt-5">
+      <div class= "col-lg-7 mt-5 mx-auto text-center">
         <div style= 'width: 80% ; margin: 0 auto;' class="py-4" >
           <h3 class="border-bottom"><strong>ゲストログインはこちら</strong></h3>
-          <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+          <button type="button" class="btn btn-warning">
+            <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>
+          </button>
         </div>
       </div>
     </div>
   </div>
+  
+<!--</div>-->
+
+
+<!--<div class="container">-->
+<!--  <div class="row" >-->
+<!--    <div class= "col-md-12 mt-5">-->
+<!--      <div class="image-container mx-auto mt-5 mb-5">-->
+<!--      <%= image_tag 'music-photo.jpg', alt: 'Image', class: "img-fluid w-80 h-60 mx-auto d-block" %>-->
+<!--        <div class="main-text">-->
+<!--          <div class="text-content">-->
+<!--            <h4>ようこそ！！アマチュア音楽広場へ！</h4>-->
+<!--            <p><strong>みなさんの個性あふれた音楽を自由に上げよう！</strong></p>-->
+<!--            <p><strong>聴くのが大好きな人はあなただけの新しい音楽をみつけられるぞ！</strong></p>-->
+<!--            <p><strong>さあ、新しい音楽の世界へいざゆかん！！</strong></p>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="row" >-->
+<!--      <div class= "col-md-12 mt-5">-->
+<!--        <div style= 'width: 80% ; margin: 0 auto;' class="py-4" >-->
+<!--          <h3 class="border-bottom"><strong>ゲストログインはこちら</strong></h3>-->
+<!--          <%= link_to 'ゲストログイン（閲覧用）', guest_sign_in_path, method: :post %>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
    
       
       
       
       
-</div>
+<!--</div>-->

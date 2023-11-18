@@ -67,19 +67,20 @@
                       <li class="nav-item text-right text-lg-left"><%= link_to "アーティスト一覧", users_path, class: "nav-link" %></li>&nbsp;
                       <li class="nav-item text-right text-lg-left"><%= link_to "投稿一覧", posts_path, class: "nav-link" %></li>&nbsp;
                       <li class="nav-item text-right text-lg-left"><%= link_to "いいね一覧", favorites_user_path(current_user), class: "nav-link" %></li>&nbsp;
-                      <li class="nav-item text-right text-lg-left"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+                      <li class="nav-item text-right text-lg-left">
+                        <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
+                      </li>
                     <% else %>
                       <li class="nav-item text-right text-lg-left"><%= link_to "概要", homes_about_path, class: "nav-link" %></li>
-                      <li class="nav-item text-right text-lg-left"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
                       <li class="nav-item text-right text-lg-left">
-                        <!--<button type="button" class=" ml-3 mb-2"></button>-->
+                        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-success btn-sm" %>
+                      </li>
+                      <li class="nav-item text-right text-lg-left">
                         <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary btn-sm" %>
                       </i>
                     <% end %>
                   </ul>
-                <!--</div>-->
-              <!--</div>-->
-            </div>
+                </div>
 
           <!--</div>-->
         </div>
@@ -97,19 +98,21 @@
       </div>
     </header>
     <main>
-    <% flash.each do |message_type, message| %>
-      <div class="flash-message <%= message_type %>"><%= message %></div>
-    <% end %>
-    <% if user_signed_in? %>
-      <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
-    <% end %>
-    <%= yield %>
+      <div class="hero d-flex " id="home">
+        <% flash.each do |message_type, message| %>
+          <div class="flash-message <%= message_type %>"><%= message %></div>
+        <% end %>
+        <% if user_signed_in? %>
+          <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
+        <% end %>
+        <%= yield %>
+      </div>
     </main>
     <div class="footer">
       <footer>
         <div class="container">
           <div class="row justify-content-cencer p-5">
-            <div class="col text-align:right">
+            <div class="col mx-auto text-center">
             <p>アマチュア音楽広場♪<br>
                &ensp; <i class="fab fa-instagram"></i> &ensp;<i class="fab fa-line"></i> &ensp;<i class="fab fa-twitter"></i><br>
                address: 神奈川県横浜市XXX<br>

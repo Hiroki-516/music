@@ -1,7 +1,7 @@
 <div class="container">
   <div style= 'width: 100% ; margin: 0 auto;' class="py-3" >
     <h3 class="border-bottom"><strong>音声投稿詳細</strong></h3>
-    <div class="row">
+    <div class="row post-show">
       <div class="col-4">
         <div><%= image_tag @post.get_image(300,300) %></div><br>
         <div><%= audio_tag(polymorphic_path(@post.music), volume: 0.5, controls: true, id: "audio_#{@post.id}") %></div>
