@@ -54,13 +54,14 @@ html, body {
  }
  
  .hero{
-   background-image: url("music-photo.jpg");
+   min-height: 400px;
+   background-image: url("assets/music-photo.jpg");
    background-position: center;
    background-size: cover;
    background-attachment: fixed;
    position: relative;
    z-index: 2;
-   background-repeat: repeat-y;
+   background-repeat: no-repeat;
  }
  
  
@@ -220,7 +221,7 @@ footer {
 }
 
 body {
-  background-image: url("music-photo.jpg");
+  background-image: url("assets/music-photo.jpg");
   
 }
 

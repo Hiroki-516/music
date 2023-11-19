@@ -10,7 +10,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     # 投稿した本文を Language.get_data(list_params[:body]) でAPI側に渡しています。→返ってきた値をもとに採点
-    @post.score = Language.get_data(post_params[:caption])
+    #@post.score = Language.get_data(post_params[:caption])
     @post.user_id = current_user.id
     if @post.save
       redirect_to post_path(@post), notice: "You have created post successfully."
