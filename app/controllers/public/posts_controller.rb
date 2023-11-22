@@ -28,16 +28,16 @@ class Public::PostsController < ApplicationController
     #クリエパラメータ(genre_id)をとりだす
     if @genre_id = params[:genre_id]
       #genre_idが同じものを全てとりだす
-      posts = Post.joins(:user).where(genre_id: @genre_id, users: { is_deleted: 'false' }).order(created_at: :asc)
+      posts = Post.joins(:user).where(genre_id: @genre_id, users: { is_deleted: 'false' }).order(created_at: :desc)
       @posts_count = posts.count
       @posts = posts.page(params[:page]).per(10)
     #なければ全てとりだす
     elsif post_name = params[:post_name]
       @posts_count = Post.where("name LIKE ?","%"+ post_name + "%").count
-      @posts = Post.joins(:user).where("posts.name LIKE ? AND users.is_deleted = false","%"+ post_name + "%").order(created_at: :asc).page(params[:page]).per(10)
+      @posts = Post.joins(:user).where("posts.name LIKE ? AND users.is_deleted = false","%"+ post_name + "%").order(created_at: :desc).page(params[:page]).per(10)
     else
       @posts_count = Post.all.count
-      @posts = Post.joins(:user).where(users: { is_deleted: 'false' }).order(created_at: :asc).page(params[:page]).per(10)
+      @posts = Post.joins(:user).where(users: { is_deleted: 'false' }).order(created_at: :desc).page(params[:page]).per(10)
     end
   end
 
