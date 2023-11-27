@@ -28,7 +28,7 @@ class Public::UsersController < ApplicationController
 
 
   def index
-    @users = User.where(status: "artist", is_deleted: false).page(params[:page]).per(10)
+    @users = User.where(status: "artist", is_deleted: false).order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show
