@@ -1,33 +1,41 @@
-  <h2>フォローユーザー一覧</h2>
-<% if @users.exists? %>
-  <table class='table'>
-    <thead>
-      <tr>
-        <th>ユーザー画像</th>
-        <th>ニックネーム</th>
-        <th>自己紹介文</th>
-        <th>活動ステータス</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= image_tag user.get_profile_image(100,100), size: '50x50' %></td>
-          <td><%= user.name %></td>
-          <td><%= user.introduction %></td>
-          <td><%= user.status_i18n %></td>
-          <td>フォロー数：<%= user.followings.count %></td>
-          <td>フォロワー数：<%= user.followers.count %></td>
-          <td>
-            <%= render 'public/relationships/btn', user: user %>
-          </td>
-          <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
-        </tr>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div style= 'width: 105% ; margin: 0 auto;' class="py-2" >
+        <h2><%= @user.name %>さんのフォロー一覧</h2>
+      <% if @users.exists? %>
+        <table class='table-followings'style='width: 100%;'>
+          <thead>
+            <tr>
+              <th>画像</th>
+              <th>ニックネーム</th>
+              <th>自己紹介文</th>
+              <th>活動ステータス</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= image_tag user.get_profile_image(100,100), size: '50x50' %></td>
+                <td><%= user.name %></td>
+                <td><%= user.introduction %></td>
+                <td><%= user.status_i18n %></td>
+                <td>フォロー数：<%= user.followings.count %></td>
+                <td>フォロワー数：<%= user.followers.count %></td>
+                <td>
+                  <%= render 'public/relationships/btn', user: user %>
+                </td>
+                <td><%= link_to 'Show', user, class: "user_#{user.id}" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p>ユーザーはいません</p>
       <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+      </div>  
+    </div> 
+  </div>
+</div>

@@ -28,7 +28,7 @@
 
         <% if @post.user == current_user %>
           <%= link_to '編集', edit_post_path(@post), class: "btn btn-sm btn-success" %>
-          <%= link_to '削除', post_path(@post), method: :delete, data: { comfirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@post.id}"%>
+          <%= link_to '削除', post_path(@post), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_post_#{@post.id}"%>
           <%#= link_to "削除", post_path(@post), method: :delete %>
         <% end %><br>
         <!--非同期通信のためのクラスを指定している-->

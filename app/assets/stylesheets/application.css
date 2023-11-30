@@ -119,6 +119,16 @@ html, body {
  .post-show{
    background-color: #35dc4ebf;
  }
+ 
+ .table-followers{
+   color: black;
+   background-color: #ffffffd4;
+ }
+ 
+ .table-followings{
+   color: black;
+   background-color: #ffffffd4;
+ }
 
 .image-container {
   position: relative; /* 相対位置指定 */
