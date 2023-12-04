@@ -134,6 +134,7 @@ html, body {
   position: relative; /* 相対位置指定 */
   text-align: center; /* テキストを中央揃え */
 }
+
 .main-text {
   position: absolute; /* 絶対位置指定 */
   top: 50%; /* 上端を中央に配置 */
@@ -145,6 +146,7 @@ html, body {
   font-size: 15px;
   color: #333333;
 }
+
 .text-content {
   text-align: center; /* テキストを中央揃え */
 }

@@ -5,11 +5,22 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create!(
-  email: 'admin@admin',
-  password: 'adminadmin'
-  )
-  
+
+# Admin.create!(
+#   email: 'admin@admin',
+#   password: 'adminadmin'
+#   )
+
+admins = [
+  {email: 'admin@admin', password: 'adminadmin'},
+]
+
+admins.each do |admin|
+  Admin.find_or_create_by(email: admin[:email]) do |a|
+    a.password = admin[:password]
+  end
+end
+
   # 取得または登録したインスタンス = モデル.find_or_create_by!(検索キー: 検索する値) do |ブロック変数|
 #   ブロック変数.属性 = 登録する値
 #   :

@@ -30,7 +30,7 @@ class Post < ApplicationRecord
   before_create :prepare_save # This callback doesn't validate
 
   def prepare_save
-   self.score=Language.get_data(self.caption)
+    self.score = Language.get_data(self.caption)
   end
   
 
