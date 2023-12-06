@@ -171,6 +171,10 @@ html, body {
   /* 他のホバーエフェクトのスタイルを追加できます */
 }
 
+.admin-usershow{
+    background-color: #35bfdcd4;
+}
+
 footer {
   width: 100%;
   height: auto;
