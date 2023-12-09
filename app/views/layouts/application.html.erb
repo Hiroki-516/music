@@ -98,13 +98,13 @@
       </div>
     </header>
     <main>
+      <% flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="m-1">ようこそ、<%= current_user.name %> 様</div>
+      <% end %>
       <div class="hero d-flex " id="home">
-        <% flash.each do |message_type, message| %>
-          <div class="flash-message <%= message_type %>"><%= message %></div>
-        <% end %>
-        <% if user_signed_in? %>
-          <p class="m-1">ようこそ、<%= current_user.name %> 様</p>
-        <% end %>
         <%= yield %>
       </div>
     </main>

@@ -23,8 +23,22 @@
         </td>
         <td><%= post.name %></td>
         <td>
-          <%= audio_tag(polymorphic_path(post.music), controls: true) %>
+          <%= audio_tag(polymorphic_path(post.music), volume: 0.5, controls: true, id: "audio_#{post.id}") %>
         </td>
+        
+         <script>
+              // document.addEventListener('DOMContentLoaded', function() {
+              //   var audio = document.getElementById("audio_<%#= post.id %>"); // 音声要素を取得
+              //   audio.volume = 0.5; // ボリュームを半分に設定
+              // });
+              $(document).on('turbolinks:load', function() {
+                // window.addEventListener('load', function() {
+                  var audio = document.getElementById("audio_<%= post.id %>"); // 音声要素を取得
+                  audio.volume = 0.5; // ボリュームを半分に設定
+                // });
+              });
+          </script>
+          
         <td><%= post.caption %></td>
         <td>
           <%= link_to(user_path(post.user.id), class:"text-dark") do %>
