@@ -26,7 +26,9 @@
 - 自分にとって新しい音楽・好きな音楽を発見したいとき
 ​
 ## 設計書
-
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1Rfk9pjDduLxdJunsZeoIY9sB5uXhuexe/edit#gid=22058163)
+- [ER図](https://app.diagrams.net/#G1ILP7lrNRS4POyDJ45VP0gS0_Y4XjVhkn)
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1Qr7XXQjyQDSCG1bAppXfBEiv84-z7lWtPfcEispeGaA/edit#gid=549108681)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -36,3 +38,8 @@
 - IDE：Cloud9
 ​
 ## 使用素材
+- フリーイラスト素材として以下を使用
+  - SOLUTION MAGAZINE(https://ai-create.net/magazine/2020/06/17/%E5%80%8B%E4%BA%BA%E7%9A%84%E3%81%AB%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86%E3%81%8A%E3%81%99%E3%81%99%E3%82%81%E3%81%AE%E3%83%95%E3%83%AA%E3%83%BC%E9%9F%B3%E6%A5%BD%E7%B4%A0%E6%9D%90%E3%82%B5%E3%82%A4/)
+  - illust8 (https://illust8.com/contents/11463)
+  - 音符の無料イラスト集 (https://azukichi.net/music/onpu396.html)
+  - かわいいフリー素材集　いらすとや　(https://www.irasutoya.com/2019/10/blog-post_40.html)
