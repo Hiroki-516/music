@@ -1,6 +1,7 @@
 # アマチュア音楽広場！
 ​
 ## サイト概要：アマチュア音楽アーティストの魅力を発信するSNS
+![音楽画像](/music/app/assets/images/music-photo.jpg)
 
 ### サイトテーマ
 
