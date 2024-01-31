@@ -11,11 +11,13 @@
     <% @posts.each do |post| %>
       <div class="card w-75 mx-auto mt-4 shadow-lg">
         <div class="col-12 d-flex">
-          <div class="col-7 p-0">
+          <div class="col-7 p-2">
             <%= link_to post_path(post.id) do %>
           <!--画像の幅自体は「w-25」で決定-->
               <%= image_tag post.get_image(150,150), class:"card-img-top w-25 "; %>
-            <% end %><br>
+            <% end %>
+            <br>
+            <br>
 
             <%= audio_tag(polymorphic_path(post.music), volume: 0.5, controls: true, id: "audio_#{post.id}") %>
 
